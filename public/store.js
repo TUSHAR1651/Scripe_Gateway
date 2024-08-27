@@ -59,12 +59,8 @@ var stripeHandler = StripeCheckout.configure({
                 items : items
             })
         }).then(function(res){
-            // console.log('hia');
-            // console.log(res);
-            // console.log(res.json);
             return res.json();
         }).then(function(data){
-            // console.log('hi');
             console.log(data.message);
             alert(data.message);
             var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -73,20 +69,13 @@ var stripeHandler = StripeCheckout.configure({
             }
             updateCartTotal()
         }).catch(function(error){
-            console.log('a');
             console.log(error);
         })
-        // console.log('purchase');
+        
     }
 })
 
 function purchaseClicked() {
-    // alert('Thank you for your purchase')
-    // var cartItems = document.getElementsByClassName('cart-items')[0]
-    // while (cartItems.hasChildNodes()) {
-    //     cartItems.removeChild(cartItems.firstChild)
-    // }
-    // updateCartTot
     var priceElement = document.getElementsByClassName('cart-total-price')[0]
     var price = parseFloat(priceElement.innerText.replace('$', '')) * 100
     stripeHandler.open({
@@ -128,7 +117,7 @@ function addItemToCart(title, price, imageSrc , id) {
     for (var i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText == title) {
             alert('This item is already added to the cart')
-            return
+            return;
         }
     }
     var cartRowContents = `
